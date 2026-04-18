@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "username": "wahab",
+      "email": "jack@1687",
+      "message": "wahab",
+      "id": "4CD282wo7pY"
+    },
+    {
+      "username": "whab",
+      "email": "wahab@h",
+      "message": "bc,",
+      "id": "RAc20ALmUw8"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

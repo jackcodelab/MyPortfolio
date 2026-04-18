@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header id="header">
+        
+        <ul id="Left-Items">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <ul>
+            <li id="User-Icon">
+                <a href="https://github.com/JackAtTheRate1687" target="_blank">
+                    <img src="./images/github-logo.svg" alt="GitHub" width="30">
+                </a>
+            </li>
+        </ul>
+    </header>
+    <section id="Hero-section">
+        <div class="hero-content">
+            <h1>Wahab</h1>
+            <p>Web Developer</p>
+        </div>
+        <div id="skills-container">
+            <a class="skill-box" href="#">HTML 5</a>
+            <a class="skill-box" href="#">CSS 3</a>
+            <a class="skill-box" href="#">JS (E6+)</a>
+            <a class="skill-box" href="#">React</a>
+            <a class="skill-box" href="#">Node.js</a>
+        </div>
+    </section>
+    <div class="projects">
+
+        <div class="project-card card1" id="project-card">
+            <h1>Volume Booster</h1>
+            <p>A real-time audio amplifier using Web Audio API.</p>
+
+            <!-- The Audio Player -->
+            <audio id="demo-audio" src="./Audios/Good-Morning.mp3"></audio>
+
+            <div class="controls">
+                <button id="play-btn">Play / Pause</button>
+                <div class="slider-container">
+                    <label>Boost: <span id="boost-level">100</span>%</label>
+                    <input type="range" id="volume-slider" min="100" max="600" value="100">
+                </div>
+                <a href="#Volume-Booster-Info">Read More</a>
+                
+             <button id="show-more-btn">Show Full</button>
+            </div>
+        </div>
+
+        <div class="project-card card2">
+            <h1>Project 2</h1>
+            <img src="project2.jpg" alt="Project 2">
+        </div>
+        <div class="project-card card3">
+            <h1>Project 3</h1>
+            <img src="project3.jpg" alt="Project 3">
+        </div>
+        <div class="project-card card4">
+            <h1>More Projects</h1>
+            <p>Coming soon!</p>
+            <a href="">View Projects</a>
+        </div>
+    </div>
+    <section class="card-info">
+        <h1 class="Info-Heading">About the Projects</h1>
+        <div class="about-cards about-card1" id="Volume-Booster-Info">
+            <h2>Volume booster</h2>
+            <p>I noticed many web videos have low-quality, quiet audio. I built this tool to allow users to amplify
+                sound by up to 600% directly in the browser without losing clarity</p>
+        </div>
+
+        <div class="about-cards about-card2">
+            <h2>Project 2</h2>
+            <p>Description for Project 2.</p>
+        </div>
+
+        <div class="about-cards about-card3">
+            <h2>Project 3</h2>
+            <p>Description for Project 3.</p>
+        </div>
+    </section>
+    <hr style="width: 80dvw; margin: 40px 0;">
+    <section id="contact-section">
+        <h1>Contact Me</h1>
+        
+        
+        <form id="contact-form">
+            <span style="color: white;">Hey It's actually works!.<br>It Stores provided Details in Json Database.</span>
+            <input type="text" name="username" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit" id="submit-btn">Send</button>
+        </form>
+
+    </section>
+    <footer>
+        <p>Copyright &copy; 2024 Wahab</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
