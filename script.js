@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+    
     // ==========================================
     // 1. FEATURE ONE: GITHUB API TRACKER
     // ==========================================
@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchGitHubStats() {
         if (!ghWidget) return;
         ghWidget.innerHTML = '<p class="loading-text">Fetching API payload metrics...</p>';
-
+        
         try {
             const response = await fetch(`https://github.com{username}`);
             if (!response.ok) throw new Error('Network error mapping profile data');
-
+            
             const data = await response.json();
             ghWidget.innerHTML = `
                 <div style="display:flex; align-items:center; gap:12px;">
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!calcPages || !calcTier || !calcTotal) return;
         const pageCount = parseInt(calcPages.value, 10);
         const tierMultiplier = parseInt(calcTier.value, 10);
-
+        
         if (pagesVal) pagesVal.innerText = pageCount;
         calcTotal.innerText = pageCount * tierMultiplier;
     }
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateSandbox() {
         if (!sandboxInput || !sandboxSize || !sandboxPreview) return;
         const size = sandboxSize.value;
-
+        
         if (fontSizeVal) fontSizeVal.innerText = size;
         sandboxPreview.innerText = sandboxInput.value || ' ';
         sandboxPreview.style.fontSize = `${size}px`;
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('input', () => {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+            
             const isNameValid = validateField(nameInput, nameInput.value.trim().length >= 3);
             const isEmailValid = validateField(emailInput, emailRegex.test(emailInput.value.trim()));
             const isMsgValid = validateField(msgInput, msgInput.value.trim().length > 0);
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', (e) => {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             const valid = nameInput.value.trim().length >= 3 && emailRegex.test(emailInput.value.trim()) && msgInput.value.trim().length > 0;
-
+            
             if (!valid) {
                 e.preventDefault();
                 feedback.style.display = 'block';
