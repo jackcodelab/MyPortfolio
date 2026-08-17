@@ -1,101 +1,89 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // === 1. AUDIO INTERACTIVITY + CANVAS LIVE WAVE VISUALIZER ===
-    const audio = document.getElementById('demo-audio');
-    const slider = document.getElementById('volume-slider');
-    const boostLevel = document.getElementById('boost-level');
-    const playBtn = document.getElementById('play-btn');
-    const canvas = document.getElementById('visualizer-canvas');
-    const canvasCtx = canvas.getContext('2d');
 
-    let audioCtx, source, gainNode, analyser, bufferLength, dataArray;
+    // ==========================================
+    // 1. FEATURE ONE: GITHUB API TRACKER
+    // ==========================================
+    const ghWidget = document.getElementById('github-widget');
+    const refreshGhBtn = document.getElementById('refresh-gh-btn');
+    const username = 'JackAtTheRate1687';
 
-    function initAudio() {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            source = audioCtx.createMediaElementSource(audio);
-            gainNode = audioCtx.createGain();
-            
-            // Setup analyser node for real-time waveform reading
-            analyser = audioCtx.createAnalyser();
-            analyser.fftSize = 64; // Small sample size for compact UI bar movement
-            bufferLength = analyser.frequencyBinCount;
-            dataArray = new Uint8Array(bufferLength);
+    async function fetchGitHubStats() {
+        if (!ghWidget) return;
+        ghWidget.innerHTML = '<p class="loading-text">Fetching API payload metrics...</p>';
 
-            // Connect processing chain nodes
-            source.connect(gainNode);
-            gainNode.connect(analyser);
-            analyser.connect(audioCtx.destination);
-            
-            gainNode.gain.value = slider ? slider.value / 100 : 1;
-            drawVisualizer();
+        try {
+            const response = await fetch(`https://github.com{username}`);
+            if (!response.ok) throw new Error('Network error mapping profile data');
+
+            const data = await response.json();
+            ghWidget.innerHTML = `
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <img src="${data.avatar_url}" width="45" style="border-radius:50%; border:1px solid #ccc;">
+                    <div>
+                        <strong style="font-size:16px;">${data.name || username}</strong>
+                        <p style="margin:2px 0 0 0; font-size:12px; color:#555;">Public Repos: <b>${data.public_repos}</b></p>
+                        <p style="margin:2px 0 0 0; font-size:12px; color:#555;">Followers: <b>${data.followers}</b></p>
+                    </div>
+                </div>
+            `;
+        } catch (error) {
+            console.error(error);
+            ghWidget.innerHTML = '<p style="color:#ef4444; font-size:12px;">⚠️ Failed to load profile data from API.</p>';
         }
     }
 
-    // Dynamic recursive canvas animation frame loop
-    function drawVisualizer() {
-        requestAnimationFrame(drawVisualizer);
-        if (!analyser) return;
+    if (refreshGhBtn) {
+        refreshGhBtn.addEventListener('click', fetchGitHubStats);
+    }
+    fetchGitHubStats(); // Initial lifecycle mount trigger
 
-        analyser.getByteFrequencyData(dataArray);
-        canvasCtx.fillStyle = '#111';
-        canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
+    // ==========================================
+    // 2. FEATURE TWO: FREELANCE PROJECT CALCULATOR
+    // ==========================================
+    const calcPages = document.getElementById('calc-pages');
+    const pagesVal = document.getElementById('pages-val');
+    const calcTier = document.getElementById('calc-tier');
+    const calcTotal = document.getElementById('calc-total');
 
-        const barWidth = (canvas.width / bufferLength) * 1.5;
-        let barHeight;
-        let x = 0;
+    function calculateCost() {
+        if (!calcPages || !calcTier || !calcTotal) return;
+        const pageCount = parseInt(calcPages.value, 10);
+        const tierMultiplier = parseInt(calcTier.value, 10);
 
-        for (let i = 0; i < bufferLength; i++) {
-            barHeight = dataArray[i] / 4; // Scale sound bytes down to canvas bounds
-            // Transition color spectrum based on variable frequency levels
-            canvasCtx.fillStyle = `rgb(${barHeight + 100}, 37, 235)`;
-            canvasCtx.fillRect(x, canvas.height - barHeight, barWidth - 2, barHeight);
-            x += barWidth;
-        }
+        if (pagesVal) pagesVal.innerText = pageCount;
+        calcTotal.innerText = pageCount * tierMultiplier;
     }
 
-    if (playBtn && audio) {
-        playBtn.addEventListener('click', async () => {
-            initAudio();
-            if (audioCtx.state === 'suspended') await audioCtx.resume();
-
-            if (audio.paused) {
-                audio.play();
-                playBtn.innerText = "Pause";
-                playBtn.style.background = "#dc2626";
-            } else {
-                audio.pause();
-                playBtn.innerText = "Play";
-                playBtn.style.background = "#2563eb";
-            }
-        });
-
-        audio.addEventListener('ended', () => {
-            playBtn.innerText = "Play";
-            playBtn.style.background = "#2563eb";
-        });
+    if (calcPages && calcTier) {
+        calcPages.addEventListener('input', calculateCost);
+        calcTier.addEventListener('change', calculateCost);
     }
 
-    if (slider) {
-        slider.addEventListener('input', () => {
-            const value = slider.value;
-            if (boostLevel) boostLevel.innerText = value;
-            if (gainNode) gainNode.gain.value = value / 100;
-        });
+    // ==========================================
+    // 3. FEATURE THREE: TYPOGRAPHY LAB SANDBOX
+    // ==========================================
+    const sandboxInput = document.getElementById('sandbox-input');
+    const sandboxSize = document.getElementById('sandbox-size');
+    const fontSizeVal = document.getElementById('font-size-val');
+    const sandboxPreview = document.getElementById('sandbox-preview');
+
+    function updateSandbox() {
+        if (!sandboxInput || !sandboxSize || !sandboxPreview) return;
+        const size = sandboxSize.value;
+
+        if (fontSizeVal) fontSizeVal.innerText = size;
+        sandboxPreview.innerText = sandboxInput.value || ' ';
+        sandboxPreview.style.fontSize = `${size}px`;
     }
 
-    // === 2. CARD DESCRIPTION TOGGLE ===
-    const projectCard = document.getElementById('project-card');
-    const btn = document.getElementById('show-more-btn');
-
-    if (btn && projectCard) {
-        btn.addEventListener('click', () => {
-            projectCard.classList.toggle('expanded');
-            btn.innerText = projectCard.classList.contains('expanded') ? "Hide Description" : "Show Description";
-        });
+    if (sandboxInput && sandboxSize) {
+        sandboxInput.addEventListener('input', updateSandbox);
+        sandboxSize.addEventListener('input', updateSandbox);
     }
 
-    // === 3. SKILL BOXES ROTATION ===
+    // ==========================================
+    // 4. ANIMATION: SKILL BOX ROTATION HINTS
+    // ==========================================
     const boxes = document.querySelectorAll('.skill-box');
     boxes.forEach(box => {
         box.addEventListener('mouseenter', () => {
@@ -107,7 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // === 4. INTERACTIVE CLIENT-SIDE FORM VALIDATOR ===
+    // ==========================================
+    // 5. CONTACT FORM CLIENT-SIDE VALIDATION
+    // ==========================================
     const contactForm = document.getElementById('contact-form');
     const nameInput = document.getElementById('form-name');
     const emailInput = document.getElementById('form-email');
@@ -127,10 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (contactForm) {
-        // Real-time listener checks as the user types
         contactForm.addEventListener('input', () => {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
+
             const isNameValid = validateField(nameInput, nameInput.value.trim().length >= 3);
             const isEmailValid = validateField(emailInput, emailRegex.test(emailInput.value.trim()));
             const isMsgValid = validateField(msgInput, msgInput.value.trim().length > 0);
@@ -149,9 +138,9 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', (e) => {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             const valid = nameInput.value.trim().length >= 3 && emailRegex.test(emailInput.value.trim()) && msgInput.value.trim().length > 0;
-            
+
             if (!valid) {
-                e.preventDefault(); // Halt standard browser forwarding execution
+                e.preventDefault();
                 feedback.style.display = 'block';
                 feedback.style.background = '#7f1d1d';
                 feedback.style.color = '#fca5a5';
