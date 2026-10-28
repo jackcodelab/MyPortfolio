@@ -1,110 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wahab | Web Developer</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Tech Corner</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <header id="header">
-        <ul id="Left-Items">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <ul>
-            <li id="User-Icon">
-                <a href="https://github.com" target="_blank">
-                    <img src="https://jsdelivr.net" alt="GitHub" width="30" style="filter: invert(1);">
-                </a>
-            </li>
-        </ul>
+  <div class="tech-container">
+    <!-- Header -->
+    <header class="tech-header">
+      <div class="logo">⚡ TECH_CORNER</div>
+      <div class="status-bar">
+        <span class="pulse-dot"></span>
+        <span class="status-text">System Active | Stack: Frontend</span>
+      </div>
     </header>
 
-    <section id="Hero-section">
-        <div class="hero-content">
-            <h1>Wahab</h1>
-            <p>Web Developer</p>
+    <div class="tech-grid">
+      <!-- Sidebar / Bio -->
+      <aside class="tech-card bio-card">
+        <h3>__developer</h3>
+        <div class="profile-img">🧑‍💻</div>
+        <p class="bio-text">Building things with code, exploring automation, and mastering the web stack.</p>
+        <div class="tags">
+          <span class="tag">#HTML5</span>
+          <span class="tag">#CSS3</span>
+          <span class="tag">#JavaScript</span>
+          <span class="tag">#Git</span>
         </div>
-        <div id="skills-container">
-            <a class="skill-box" href="#">HTML 5</a>
-            <a class="skill-box" href="#">CSS 3</a>
-            <a class="skill-box" href="#">JS (ES6+)</a>
-            <a class="skill-box" href="#">React</a>
-            <a class="skill-box" href="#">Tailwind V4.0</a>
+      </aside>
+
+      <!-- Main Terminal Section -->
+      <main class="tech-card terminal-card">
+        <div class="terminal-header">
+          <div class="terminal-buttons">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="terminal-title">bash — user@tech-corner</span>
         </div>
-    </section>
-
-    <!-- Main Dynamic Components Showcase Workspace -->
-    <main class="projects">
-
-        <!-- Feature 1: GitHub API Integration Sync -->
-        <div class="project-card">
-            <h2>Live GitHub Status</h2>
-            <p>Real-time data fetched directly via the GitHub REST API.</p>
-            <div id="github-widget" class="widget-box">
-                <p class="loading-text">Querying remote profile repository sync metrics...</p>
-            </div>
-            <button id="refresh-gh-btn" class="action-btn">Force Sync API</button>
+        <div class="terminal-body" id="terminal-body">
+          <div class="terminal-line">Welcome to the Tech Corner shell. Type <span class="highlight">help</span> to see available commands.</div>
+          <div class="terminal-input-row">
+            <span class="prompt">guest~$:</span>
+            <input type="text" id="terminal-input" autofocus autocomplete="off" spellcheck="false">
+          </div>
         </div>
+      </main>
 
-        <!-- Feature 2: Interactive Value Quote Configurator -->
-        <div class="project-card">
-            <h2>Project Cost Calculator</h2>
-            <p>Tweak development sliders to instantly evaluate accurate budget targets.</p>
-            <div class="widget-box calculator-layout">
-                <div class="input-group">
-                    <label>Estimated Pages: <span id="pages-val">3</span></label>
-                    <input type="range" id="calc-pages" min="1" max="15" value="3">
-                </div>
-                <div class="input-group">
-                    <label>Complexity Weight</label>
-                    <select id="calc-tier">
-                        <option value="50">Basic Styling (Static)</option>
-                        <option value="100" selected>Standard Interactive (SPA)</option>
-                        <option value="200">Advanced Complex Engine</option>
-                    </select>
-                </div>
-                <div class="total-display">Estimated: $ <span id="calc-total">300</span></div>
-            </div>
+      <!-- Project Quick-Grid -->
+      <section class="tech-card projects-card">
+        <h3>// current_projects</h3>
+        <div class="project-list">
+          <div class="project-item">
+            <h4>📦 Web Scaffold Builder</h4>
+            <p>Automated workflow boilerplate generation.</p>
+          </div>
+          <div class="project-item">
+            <h4>🎨 Custom UI Design System</h4>
+            <p>Utility-first styling tokens for rapid dev.</p>
+          </div>
         </div>
+      </section>
 
-        <!-- Feature 3: Typography Design Sandbox Previewer -->
-        <div class="project-card">
-            <h2>Type Sandbox Lab</h2>
-            <p>Test presentation flow layouts dynamically inside the component boundary layout.</p>
-            <div class="widget-box sandbox-layout">
-                <input type="text" id="sandbox-input" value="Change this text live!" placeholder="Type content here...">
-                <div class="input-group font-controls">
-                    <label>Scale: <span id="font-size-val">18</span>px</label>
-                    <input type="range" id="sandbox-size" min="12" max="32" value="18">
-                </div>
-                <p id="sandbox-preview">Change this text live!</p>
-            </div>
-        </div>
+      <!-- Quick Links / Bookmarks -->
+      <section class="tech-card links-card">
+        <h3>|| developer_resources</h3>
+        <ul class="resource-links">
+          <li><a href="https://developer.mozilla.org/" target="_blank">🔗 MDN Web Docs</a></li>
+          <li><a href="https://dev.to/" target="_blank">🔗 DEV Community</a></li>
+          <li><a href="https://github.com" target="_blank">🔗 GitHub Hub</a></li>
+        </ul>
+      </section>
+    </div>
+  </div>
 
-    </main>
-
-    <section id="contact-section">
-        <h1>Contact Me</h1>
-        <div id="validation-feedback" class="feedback-box"></div>
-
-        <form id="contact-form" action="https://formsubmit.co" method="POST" novalidate>
-            <input type="text" id="form-name" name="username" placeholder="Your Name (Min 3 characters)" required>
-            <input type="email" id="form-email" name="email" placeholder="Your Email address" required>
-            <textarea id="form-msg" name="message" placeholder="Your Message" required></textarea>
-            <button type="submit" id="submit-btn">Send</button>
-        </form>
-    </section>
-
-    <footer>
-        <p>Copyright &copy; 2026 Wahab</p>
-    </footer>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
-
 </html>

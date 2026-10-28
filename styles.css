@@ -1,0 +1,251 @@
+:root {
+  --bg-dark: #0f141c;
+  --card-bg: #171d26;
+  --accent-green: #00ff66;
+  --accent-blue: #00aaff;
+  --text-main: #e2e8f0;
+  --text-muted: #8a99ad;
+  --border-color: #242f41;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Courier New', Courier, monospace;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.tech-container {
+  width: 100%;
+  max-width: 1100px;
+}
+
+.tech-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  font-weight: bold;
+  color: var(--accent-blue);
+  font-size: 1.2rem;
+}
+
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent-green);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tech-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.tech-card h3 {
+  color: var(--accent-blue);
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+  font-size: 1rem;
+}
+
+/* Bio Card */
+.bio-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.profile-img {
+  font-size: 4rem;
+  margin: 15px 0;
+}
+
+.bio-text {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.tag {
+  background: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: var(--accent-green);
+}
+
+/* Terminal Card */
+.terminal-card {
+  grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  min-height: 350px;
+}
+
+.terminal-header {
+  background: var(--bg-dark);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.terminal-buttons {
+  display: flex;
+  gap: 6px;
+  margin-right: 15px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.red { background-color: #ff5f56; }
+.yellow { background-color: #ffbd2e; }
+.green { background-color: #27c93f; }
+
+.terminal-title {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.terminal-body {
+  padding: 15px;
+  flex-grow: 1;
+  overflow-y: auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.terminal-line {
+  margin-bottom: 8px;
+  word-break: break-all;
+}
+
+.highlight {
+  color: var(--accent-green);
+}
+
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.prompt {
+  color: var(--accent-blue);
+}
+
+#terminal-input {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  flex-grow: 1;
+}
+
+/* Projects and Links */
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project-item {
+  background: var(--bg-dark);
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 3px solid var(--accent-green);
+}
+
+.project-item h4 {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.project-item p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.resource-links {
+  list-style: none;
+}
+
+.resource-links li {
+  margin-bottom: 10px;
+}
+
+.resource-links a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.resource-links a:hover {
+  color: var(--accent-blue);
+}
